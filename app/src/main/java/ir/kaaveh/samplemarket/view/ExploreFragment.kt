@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ir.kaaveh.samplemarket.R
 import ir.kaaveh.samplemarket.adapter.ItemAdapter
 import ir.kaaveh.samplemarket.databinding.FragmentExplorBinding
-import ir.kaaveh.samplemarket.repository.ItemRepository
 import ir.kaaveh.samplemarket.viewmodel.ExploreViewModel
-import ir.kaaveh.samplemarket.viewmodel.ExploreViewModelFactory
 
+@AndroidEntryPoint
 class ExploreFragment : Fragment() {
 
     override fun onCreateView(
@@ -28,9 +28,7 @@ class ExploreFragment : Fragment() {
             false
         )
 
-        val exploreViewModelFactory = ExploreViewModelFactory(ItemRepository())
-        val exploreViewModel =
-            ViewModelProvider(this, exploreViewModelFactory).get(ExploreViewModel::class.java)
+        val exploreViewModel: ExploreViewModel by viewModels()
 
         val itemAdapter = ItemAdapter()
         binding.itemRecycler.adapter = itemAdapter

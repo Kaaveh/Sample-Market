@@ -1,12 +1,15 @@
 package ir.kaaveh.samplemarket.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ir.kaaveh.samplemarket.model.Item
 import ir.kaaveh.samplemarket.repository.ItemRepository
 
-class ExploreViewModel(itemRepository: ItemRepository) : ViewModel() {
+class ExploreViewModel @ViewModelInject constructor(
+    itemRepository: ItemRepository
+) : ViewModel() {
     private val _itemList = MutableLiveData<List<Item>>()
 
     val itemList: LiveData<List<Item>>
